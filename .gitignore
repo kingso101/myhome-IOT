@@ -1,0 +1,4 @@
+.env
+send.php
+/vendor
+# config/config.php
