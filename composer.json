@@ -1,0 +1,11 @@
+{
+    "require": {
+        "aws/aws-sdk-php": "^3.158",
+        "twilio/sdk": "^5.0",
+        "vlucas/phpdotenv": "^4.1",
+        "symfony/dotenv": "^3.4"
+    },
+    "autoload": {
+        "psr-4": {"AWSCognitoApp\\": "api/objects"}
+    }
+}

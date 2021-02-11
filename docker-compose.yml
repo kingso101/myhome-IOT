@@ -1,0 +1,8 @@
+version: '2'
+services:
+  app:
+    image: sanderknape/aws-cognito-app
+    ports:
+      - 80:80
+    env_file:
+      - .env
