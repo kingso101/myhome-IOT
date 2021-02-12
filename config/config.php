@@ -1,7 +1,13 @@
 <?php 
 $connection = new MongoDB\Driver\Manager("mongodb://localhost:27017");
-$db = $connection->smart_surveillance;
-$collection = $db->users;
+// $db = $connection->smart_surveillance;
+// $collection = $db->users;
+if ($connection) {
+	echo "Yes";
+} else {
+	echo "No";
+}
+
 
 return [
 	'project' => [
