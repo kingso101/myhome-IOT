@@ -10,7 +10,7 @@
         $password = htmlspecialchars(strip_tags($_POST['password']));
 
         if($_POST['action'] === 'login') {
-            $user = $db->$usersCollection->findOne(array('phone'=> $phone, 'password'=> $password));
+            $user = $db->$userCollection->findOne(array('phone'=> $phone, 'password'=> $password));
 
             if($user) {
                 print_r($user);
