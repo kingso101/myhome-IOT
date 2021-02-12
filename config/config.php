@@ -1,5 +1,5 @@
 <?php 
-$connection = new MongoDB\Driver\Manager("mongodb://localhost:27017")->smart_surveillance->users;;
+$connection = new MongoDB\Driver\Manager("mongodb://localhost:27017")->smart_surveillance->users;
 // $db = $connection->smart_surveillance;
 // $usersCollection = $db->users;
 if ($connection) {
