@@ -4,7 +4,7 @@
         "twilio/sdk": "^5.0",
         "vlucas/phpdotenv": "^4.1",
         "symfony/dotenv": "^3.4",
-        "mongodb/mongodb": "^1.0"
+        "mongodb/mongodb": "^1.8"
     },
     "autoload": {
         "psr-4": {"AWSCognitoApp\\": "api/objects"}
