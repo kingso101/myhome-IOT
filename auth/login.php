@@ -1,6 +1,6 @@
 <?php 
-    require '../vendor/autoload.php';
-    require '../config/config.php';
+    require_once(__DIR__ .'/../vendor/autoload.php');
+    require_once(__DIR__ .'/../config/config.php');
 
     $error = '';
 
