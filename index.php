@@ -1,3 +1,3 @@
 <?php
-    header("Location: ./auth/signup.php");
+    header("Location: ./auth/login.php");
 ?>
