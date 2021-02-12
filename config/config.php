@@ -1,4 +1,7 @@
 <?php 
+$connection = new MongoClient();
+$db = $connection->smart_surveillance;
+$collection = $db->users;
 
 return [
 	'project' => [
