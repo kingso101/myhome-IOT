@@ -2,12 +2,6 @@
 $connection = (new MongoDB\Client);
 $db = $connection->smart_surveillance;
 $userCollection = $db->users;
-if ($userCollection) {
-	echo "Users Selected";
-} else {
-	echo "Not Selected";
-}
-
 
 return [
 	'project' => [
