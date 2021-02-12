@@ -1,81 +1,22 @@
 <?php session_start();
+    // require_once 'functions.inc.php';
+    require_once(__DIR__ .'/../vendor/autoload.php');
+    require_once(__DIR__ .'/../config/autoloaders.php');
+    $config = require_once(__DIR__ .'/../config/config.php');
 
-    require_once 'functions.inc.php';
-    require_once './api/config/database.php';
-    require_once './api/objects/contact.php';
-    require './vendor/autoload.php';
-    $config = require './api/config/core.php';
-
-    // AWS API client
-    use Aws\S3\S3Client;
-    // Twilio API Client
-    use Twilio\Rest\Client;
-    use Aws\CognitoIdentity\CognitoIdentityClient;
-     
-    // get database connection
-    $database = new Database();
-    $db = $database->connect();
-    // prepare contact object
-    $contact = new Contact($db);
-    // query contact
-    $stmt = $contact->countMessages();
-    $messageNum = count($stmt);
-    // check if more than 0 record found
-    // echo $messageNum;
-    
-    if(!isset($_SESSION['id'])) {
-        header("Location: ./auth/login.php");
-    }else if(isset($_SESSION['id'])) {
-        $firstname = ucfirst($_SESSION['firstname']);
-        $lastname = ucfirst($_SESSION['lastname']);
-        $fullname = $firstname ." ".$lastname;
+    if (!isset($_SESSION['_id'])) {
+        header("Location: login.php");
+    }else{
+        $_id = $_SESSION['_id'];
+        $username = $_SESSION['username'];
         $email = $_SESSION['email'];
+        $phone = $_SESSION['phone'];
+ 
+        echo $username; 
+
     }
-    // session_destroy();
-    // S3 CONFIG SETTINGS
-    $bucket = $config['s3']['BUCKET'];
-
-    $client = new S3Client([
-        'version' => $config['s3']['VERSION'],
-        'region' => $config['s3']['REGION'],
-        'credentials' => [
-            'key' => $config['s3']['KEY'],
-            'secret' => $config['s3']['SECRET']
-        ]
-    ]);
-
-    // Twilio client instance
-    $twilioClient = new Client($config['twilio']['SID'], $config['twilio']['TOKEN']);
-
-    // Cognito client instance
-    // $aws = new \Aws\Sdk($config);
-    // $cognitoClient = $aws->createCognitoIdentityProvider();
-
-    // $cogClient = new \pmill\AwsCognito\CognitoClient($cognitoClient);
-    // $cogClient->setAppClientId($config['cognito']['CLIENT_ID']);
-    // $cogClient->setAppClientSecret($config['s3']['SECRET']);
-    // $cogClient->setRegion($config['s3']['REGION']);
-    // $cogClient->setUserPoolId($config['cognito']['POOL_ID']);
-
-    // $cogClient = new CognitoIdentityProviderClient([
-    //   'version' => $config['cognito']['VERSION'],
-    //   'region' => $config['cognito']['REGION'],
-    // ]);
-
-
-    // $cogClient = CognitoIdentityClient::factory(array(
-    //     'profile' => '<profile in your aws credentials file>',
-    //     'region'  => $config['cognito']['REGION']
-    // ));
-
-
-    // return $cogClient;
-
+                 
 ?>
-<script>
-    // var num = '<?= $messageNum; ?>';
-    // console.log(num);
-</script>
 <!DOCTYPE html>
 <html lang="en">
     <head>
