@@ -1,8 +1,9 @@
 <?php 
-$connection = new MongoDB\Driver\Manager("mongodb://localhost:27017")->smart_surveillance->users;
+// $connection = new MongoDB\Driver\Manager("mongodb://localhost:27017");
+$co = (new MongoDB\Client)->test;
 // $db = $connection->smart_surveillance;
-// $usersCollection = $db->users;
-if ($connection) {
+// $userCollection = $db->users;
+if ($co) {
 	echo "Selected";
 } else {
 	echo "Not Selected";
