@@ -11,7 +11,7 @@
 
         if($_POST['action'] === 'login') {
             try {
-                $user = $db->$userCollection->find(array('phone'=> $phone, 'password'=> $password));
+                $user = $db->$userCollection->findOne(array('phone'=> $phone, 'password'=> $password));
                 if($user) {
                     print_r($user);
                 }
