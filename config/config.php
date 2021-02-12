@@ -3,6 +3,10 @@ $connection = (new MongoDB\Client);
 $db = $connection->smart_surveillance;
 $userCollection = $db->users;
 
+
+echo phpinfo();
+
+
 return [
 	'project' => [
 		'SITE_URL' => 'https://smart-surveillance-web-app.herokuapp.com/'
