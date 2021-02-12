@@ -1,5 +1,5 @@
 <?php 
-$connection = new MongoClient();
+$connection = new MongoDB\Client("mongodb://localhost:27017");
 $db = $connection->smart_surveillance;
 $collection = $db->users;
 
