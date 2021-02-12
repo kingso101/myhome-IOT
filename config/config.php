@@ -9,7 +9,7 @@
 
 
 $client = new MongoDB\Client(
-    'mongodb+srv://dbUser1:<FDJfeUwqQepwhJxG>@cluster0.51uyd.mongodb.net/<smart_surveillance>?retryWrites=true&w=majority');
+    'mongodb+srv://dbUser1:FDJfeUwqQepwhJxG@cluster0.51uyd.mongodb.net/smart_surveillance?retryWrites=true&w=majority');
 
 $db = $client->smart_surveillance;
 $userCollection = $db->users;
