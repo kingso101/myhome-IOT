@@ -13,8 +13,8 @@
             try {
                 $user = $db->$userCollection->findOne(array('phone'=> $phone, 'password'=> $password));
                 if($user) {
-                    // print_r($user);
-                    var_dump($user);
+                    print_r($user);
+                    // var_dump($user);
                 }
             } catch (Exception $e) {
                 echo $e->getMessage();
