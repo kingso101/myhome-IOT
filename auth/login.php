@@ -24,7 +24,8 @@
                 $user = $userCollection->findOne(['email'=> $email, 'password'=> $password]);
                 if ($user) {
                     foreach ($user as $value) {
-                        echo $value;
+                        $username = $value['username'];
+                        echo $username;
                     }
                     // var_dump($user);
                 }else {
