@@ -6,12 +6,12 @@
 
     if(isset($_POST['action'])) {
 
-        $phone = htmlspecialchars(strip_tags($_POST['phone']));
+        $email = htmlspecialchars(strip_tags($_POST['email']));
         $password = htmlspecialchars(strip_tags($_POST['password']));
 
         // if($_POST['action'] === 'login') {
         //     try {
-        //         $user = $userCollection->findOne(['phone' => 'fuhaustin@gmail.com']);
+        //         $user = $userCollection->findOne(['email' => 'fuhaustin@gmail.com']);
         //         var_dump($user);
 
         //     } catch (Exception $e) {
@@ -21,7 +21,7 @@
 
         if($_POST['action'] === 'login') {
             try {
-                $user = $userCollection->findOne(['phone'=> $phone, 'password'=> $password]);
+                $user = $userCollection->findOne(['email'=> $email, 'password'=> $password]);
                 if ($user) {
                     var_dump($user);
                 }
@@ -49,8 +49,8 @@
                                     <form method="POST" id="login_form" >
 
                                         <div class="form-group">
-                                            <label for="phone">Phone</label>
-                                            <input type="number" class="form-control" name="phone" id="phone" placeholder="Phone" required>
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="password">Password</label>
