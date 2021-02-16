@@ -1,6 +1,6 @@
 <?php 
 try {
-    $client = new MongoDB\Client('mongodb+srv://env('MONGO_DB_USERNAME'):env('MONGO_DB_PASSWORD')@cluster0.51uyd.mongodb.net/env('MONGO_DB_DATABASE')?retryWrites=true&w=majority');
+    $client = new MongoDB\Client('mongodb+srv://env("MONGO_DB_USERNAME"):env("MONGO_DB_PASSWORD")@cluster0.51uyd.mongodb.net/env("MONGO_DB_DATABASE")?retryWrites=true&w=majority');
 
 	$db = $client->smart_surveillance;
 	$userCollection = $db->users;
