@@ -11,11 +11,18 @@
 
         if($_POST['action'] === 'login') {
             try {
-                $user = $db->$userCollection->find(array('phone'=> $phone, 'password'=> $password));
-                if($user) {
-                    // print_r($user);
-                    var_dump($user);
-                }
+                // $user = $db->$userCollection->find(array('phone'=> $phone, 'password'=> $password));
+                // if($user) {
+                //     // print_r($user);
+                //     var_dump($user);
+                // }
+
+                $collection = (new MongoDB\Client)->smart_surveillance->users;
+
+                $document = $collection->findOne(['_id' => '6026232d36421d70a83291fa']);
+
+                var_dump($document);
+
             } catch (Exception $e) {
                 echo $e->getMessage();
             }
