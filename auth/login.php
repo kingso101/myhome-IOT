@@ -23,7 +23,10 @@
             try {
                 $user = $userCollection->findOne(['email'=> $email, 'password'=> $password]);
                 if ($user) {
-                    var_dump($user);
+                    foreach ($user as $value) {
+                        echo $value;
+                    }
+                    // var_dump($user);
                 }else {
                     echo "Email or password is incorrect.";
                 }
