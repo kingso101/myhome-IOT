@@ -21,7 +21,7 @@
 
         if($_POST['action'] === 'login') {
             try {
-                $user = $userCollection->findOne(['_id'=> new MongoDB\BSON\ObjectId('6026232d36421d70a83291fa')]);
+                $user = $userCollection->findOne(['email'=> $email, 'password'=> $password]);
                 if ($user) {
                     var_dump($user);
                 }else {
@@ -67,8 +67,6 @@
                                                 <span class="spinner-border spinner-border-sm" role="status"></span>
                                                 Loading...
                                             </button>
-                                            <a style="font-size: 9px;width: 120px;font-weight: bolder;" class="btn btn-text-secondary float-left m-r-sm" href="forgotpassword.php"><b>Forgot Password</b></a></i>
-                                            <a class="btn btn-text-secondary float-right m-r-sm" href="signup.php"><b>Sign up</b></a></i>
                                         </div>
                                     </form>
                                 </div>
