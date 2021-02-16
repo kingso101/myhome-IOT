@@ -49,8 +49,8 @@
                                     <form method="POST" id="login_form" >
 
                                         <div class="form-group">
-                                            <label for="email">email</label>
-                                            <input type="number" class="form-control" name="email" id="email" placeholder="email" required>
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="password">Password</label>
