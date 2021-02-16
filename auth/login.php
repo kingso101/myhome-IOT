@@ -11,7 +11,7 @@
 
         if($_POST['action'] === 'login') {
             try {
-                $user = $userCollection->findOne(['phone' => $phone, 'password'=> $password]);
+                $user = $userCollection->findOne(['email' => 'fuhaustin@gmail.com']);
                 var_dump($user);
 
             } catch (Exception $e) {
