@@ -21,7 +21,7 @@
 
                 // var_dump($document);
 
-                $insertOneResult = $collection->insertOne([
+                $insertOneResult = $db->$userCollection->insertOne([
     'firstname' => 'ike',
     'lastname' => 'obi',
     'username' => 'admin',
