@@ -17,9 +17,7 @@
                 //     var_dump($user);
                 // }
 
-                $collection = (new MongoDB\Client)->smart_surveillance->users;
-
-                $document = $collection->findOne(['_id' => '6026232d36421d70a83291fa']);
+                $document = $db->$userCollection->findOne(['_id' => '6026232d36421d70a83291fa']);
 
                 var_dump($document);
 
