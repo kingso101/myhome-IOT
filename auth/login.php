@@ -11,19 +11,11 @@
 
         if($_POST['action'] === 'login') {
             try {
-                // $user = $db->$userCollection->find(array('phone'=> $phone, 'password'=> $password));
-                // if($user) {
-                //     // print_r($user);
-                //     var_dump($user);
-                // }
-
-                // $document = $userCollection->find(['_id' => '6026232d36421d70a83291fa']);
-
-                // var_dump($document);
-
-                $document = $userCollection->findOne(['_id' => ObjectId("602b7a0734cff950875001a2")]);
-
-                var_dump($document);
+                $user = $userCollection->findOne(['phone' => $phone, 'password'=> $password]);
+                if($user) {
+                    // print_r($user);
+                    var_dump($user);
+                }
 
             } catch (Exception $e) {
                 echo $e->getMessage();
