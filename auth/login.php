@@ -17,7 +17,7 @@
                 //     var_dump($user);
                 // }
 
-                $document = $db->$userCollection->findOne(['_id' => '6026232d36421d70a83291fa']);
+                $document = $db->$userCollection->find(['_id' => '6026232d36421d70a83291fa']);
 
                 var_dump($document);
 
