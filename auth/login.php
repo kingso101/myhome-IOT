@@ -21,7 +21,7 @@
 
         if($_POST['action'] === 'login') {
             try {
-                $user = $userCollection->findOne(['email'=> $email, 'password'=> $password]);
+                $user = $userCollection->findOne(['_id'=> new MongoDB\BSON\ObjectId('6026232d36421d70a83291fa')]);
                 if ($user) {
                     var_dump($user);
                 }else {
