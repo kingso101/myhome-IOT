@@ -21,7 +21,7 @@
 
                 // var_dump($document);
 
-                $document = $userCollection->findOne(['email' => 'fuhaustin@gmail.com']);
+                $document = $userCollection->findOne(['_id' => ObjectId("602b7a0734cff950875001a2")]);
 
                 var_dump($document);
 
