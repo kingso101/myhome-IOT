@@ -24,6 +24,8 @@
                 $user = $userCollection->findOne(['email'=> $email, 'password'=> $password]);
                 if ($user) {
                     var_dump($user);
+                }else {
+                    echo "Email or password is incorrect.";
                 }
             } catch (Exception $e) {
                 echo $e->getMessage();
