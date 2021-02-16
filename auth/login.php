@@ -17,22 +17,13 @@
                 //     var_dump($user);
                 // }
 
-                // $document = $db->$userCollection->find(['_id' => '6026232d36421d70a83291fa']);
+                // $document = $userCollection->find(['_id' => '6026232d36421d70a83291fa']);
 
                 // var_dump($document);
 
-                $insertOneResult = $userCollection->insertOne([
-    'firstname' => 'ike',
-    'lastname' => 'obi',
-    'username' => 'admin',
-    'email' => 'admin@example.com',
-    'phone' => '+237673446452',
-    'password' => '123'
-]);
+                $document = $userCollection->findOne(['_id' => '602b7a0734cff950875001a2']);
 
-printf("Inserted %d document(s)\n", $insertOneResult->getInsertedCount());
-
-var_dump($insertOneResult->getInsertedId());
+                var_dump($document);
 
             } catch (Exception $e) {
                 echo $e->getMessage();
