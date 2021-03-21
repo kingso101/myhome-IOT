@@ -6,7 +6,7 @@
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/..');
     $dotenv->load();
 
-    $s3_bucket = $_ENV['S3_KEY'];]
+    $s3_bucket = $_ENV['S3_KEY'];
 
     if (!isset($_SESSION['id'])) {
         header("Location: login.php");
@@ -22,7 +22,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <base href="<?= $base_url; ?>">
+        <!-- <base href="<?= $base_url; ?>"> -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
@@ -72,6 +72,169 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-messaging.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+        <link rel="manifest" href="../manifest.json">
+
+        <script>
+            $(document).ready(function() {
+                // Your web app's Firebase configuration
+                // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+                var API_KEY = "<?php echo $_ENV['FIREBASE_API_KEY'] ?>";
+                var AUTH_DOMAIN = "<?php echo $_ENV['FIREBASE_AUTH_DOMAIN'] ?>";
+                var DATABASE_URL = "<?php echo $_ENV['FIREBASE_DATABASE_URL'] ?>";
+                var PROJECT_ID = "<?php echo $_ENV['FIREBASE_PROJECT_ID'] ?>";
+                var STORAGE_BUCKET = "<?php echo $_ENV['FIREBASE_STORAGE_BUCKET'] ?>";
+                var MESSAGING_SENDER_ID = "<?php echo $_ENV['FIREBASE_MESSAGING_SENDER_ID'] ?>";
+                var APP_ID = "<?php echo $_ENV['FIREBASE_APP_ID'] ?>";
+                var MEASUREMENT_ID = "<?php echo $_ENV['FIREBASE_MEASUREMENT_ID'] ?>";
+
+                // alert("API KEY =>"+API_KEY);
+                const firebaseConfig = {
+                  apiKey: API_KEY,
+                  authDomain: AUTH_DOMAIN,
+                  databaseURL: DATABASE_URL,
+                  projectId: PROJECT_ID,
+                  storageBucket: STORAGE_BUCKET,
+                  messagingSenderId: MESSAGING_SENDER_ID,
+                  appId: APP_ID,
+                  measurementId: MEASUREMENT_ID
+                };
+
+                // Initialize Firebase
+                firebase.initializeApp(firebaseConfig);
+                firebase.analytics();
+
+                $(function(){
+                    var isChecked = localStorage.input === 'true'? true: false;
+                    $('#permission').prop('checked', isChecked || false);
+                });
+
+                $("#permission").change(function() {
+                    localStorage.input = $(this).is(':checked');
+                    console.log($(this).is(':checked'));
+                    const messaging = firebase.messaging();
+
+                    if(this.checked) {
+                        // alert('Hey')
+                        messaging.requestPermission()
+                            .then(function () {
+                                alert("Notification permission granted.");
+                                if(isTokenSentToServer()) {
+                                    console.log('Token already saved.');
+                                } else {
+                                    console.log("Notification permission granted.");
+                                    getRegToken();
+                                }
+                            })
+                            .catch(function (err) {
+                                alert(err);
+                                console.log("Unable to get permission to notify.", err);
+                            });
+
+                        function getRegToken(argument) {
+                            messaging.getToken()
+                              .then(function(currentToken) {
+                                if (currentToken) {
+                                  saveToken(currentToken);
+                                  // console.log(currentToken);
+                                  setTokenSentToServer(true);
+                                } else {
+                                  console.log('No Instance ID token available. Request permission to generate one.');
+                                  setTokenSentToServer(false);
+                                }
+                              })
+                              .catch(function(err) {
+                                console.log('An error occurred while retrieving token. ', err);
+                                setTokenSentToServer(false);
+                              });
+                        }
+
+                        function setTokenSentToServer(sent) {
+                            window.localStorage.setItem('sentToServer', sent ? 1 : 0);
+                        }
+
+                        function isTokenSentToServer() {
+                            return window.localStorage.getItem('sentToServer') == 1;
+                        }
+
+                        function saveToken(currentToken) {
+                            $.ajax({
+                                url: 'action.php',
+                                method: 'POST',
+                                data: 'token=' + currentToken + '&action=save'
+                            }).done(function(result){
+                                console.log(result);
+                            })
+                            console.log("Token saved to database.");
+                            $( "#permission" ).prop( "checked", true );
+                        }
+
+                        messaging.onMessage(function(payload) {
+                            console.log("Message received. ", payload);
+                            notificationTitle = payload.data.title;
+                            notificationOptions = {
+                            body: payload.data.body,
+                            icon: payload.data.icon,
+                            image:  payload.data.image
+                          };
+                          var notification = new Notification(notificationTitle,notificationOptions);
+                        }); 
+                    }else{
+                        (function(){
+                            messaging.getToken()
+                              .then(function(currentToken) {
+                                messaging.deleteToken(currentToken);
+                                if (currentToken) {
+                                  deleteToken(currentToken);
+                                  console.log(currentToken);
+                                  setTokenSentToServer(false);
+                                } else {
+                                  console.log('No Instance ID token available. Request permission to generate one.');
+                                  setTokenSentToServer(false);
+                                }
+                              })
+                              .catch(function(err) {
+                                console.log('An error occurred while retrieving token. ', err);
+                                setTokenSentToServer(false);
+                              });
+                        })();
+
+                        function deleteToken(currentToken) {
+                            $.ajax({
+                                url: 'action.php',
+                                method: 'POST',
+                                data: 'token=' + currentToken + '&action=delete'
+                            }).done(function(result){
+                                console.log(result);
+                            })
+                            console.log("Token deleted from database.");
+                        }
+
+                        function setTokenSentToServer(sent) {
+                            window.localStorage.setItem('sentToServer', sent ? 1 : 0);
+                        }
+
+                        function isTokenSentToServer() {
+                            return window.localStorage.getItem('sentToServer') == 1;
+                        }
+
+                        alert('No longer subscribed.');
+                        console.log('Token not saved yet');
+                    }
+                });
+            });
+        </script>
+        <script id="botcopy-embedder-d7lcfheammjct" class="botcopy-embedder-d7lcfheammjct" data-botId="5faa817afe4eb60008f026e2">
+            var s = document.createElement('script'); 
+            s.type = 'text/javascript'; s.async = true; 
+            s.src = 'https://widget.botcopy.com/js/injection.js'; 
+            document.getElementById('botcopy-embedder-d7lcfheammjct').appendChild(s);
+        </script>
     </head>
     <body>
         <!-- <div class="loader">
@@ -183,22 +346,3 @@
                     </div>
                 </nav>
             </div><!-- Page Header -->
-
-            <!-- <div id="container">
-                <h1>Space-O Browser notification demo</h1>
-
-                <h4>Generate Notification with tap on Notification</h4>
-                <a href="#" id="notificationlabel" class="button">Notification</a>
-            </div> -->
-
-            <script>
-                $(document).ready(function() {
-                    $('#notificationlabel').click('on', function(e) {
-                        e.preventDefault();
-                        // alert('Hey');
-                        showNotification();
-                        // setInterval(function(){ showNotification(); }, 15000);
-                    })
-                    
-                });
-            </script>

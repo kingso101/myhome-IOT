@@ -103,8 +103,8 @@
                                     <div class="setting-text">Notifications</div>
                                     <div class="setting-set">
                                         <div class="material-switch pull-right">
-                                            <input id="set-1" name="someSwitchOption001" type="checkbox" checked/>
-                                            <label for="set-1" class="label-default"></label>
+                                            <input id="permission" name="someSwitchOption001" type="checkbox" />
+                                            <label for="permission" class="label-default"></label>
                                         </div>
                                     </div>
                                 </div>
