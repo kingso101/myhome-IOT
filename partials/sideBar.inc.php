@@ -4,7 +4,7 @@
         $email = ucfirst($_SESSION['email']);
         $firstname = $_SESSION['firstname'];
         $phoneNumber = $_SESSION['phoneNumber'];
-        $token = $_SESSION['token'];
+        $bearer_token = $_SESSION['bearer_token'];
     }
 ?>
 <div class="page-sidebar">

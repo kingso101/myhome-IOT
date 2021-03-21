@@ -3,7 +3,7 @@ session_start();
 
 require_once(__DIR__ .'/../config/core.php');
 
-unset($_SESSION["token"]);
+unset($_SESSION["bearer_token"]);
 unset($_SESSION["id"]);
 unset($_SESSION["firstname"]);
 unset($_SESSION["email"]);
@@ -12,7 +12,7 @@ unset($_SESSION["phoneNumber"]);
 session_destroy();
   
 //redirect to login page
-header("Location: {$base_url}/auth/login.php");
+header("Location: {$_ENV['BASE_URL']}/auth/login.php");
 
 exit();
 

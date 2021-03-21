@@ -1,5 +1,5 @@
 .env
 send.php
 /vendor
-process.php
+# process.php
 config/core.php
