@@ -1,26 +1,28 @@
 <?php session_start();
     // require_once 'functions.inc.php';
     require_once(__DIR__ .'/../vendor/autoload.php');
-    require_once(__DIR__ .'/../config/autoloaders.php');
-    $config = require_once(__DIR__ .'/../config/config.php');
+    require_once(__DIR__ .'/../config/core.php');
+    // $config = require_once(__DIR__ .'/../config/core.php');
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/..');
+    $dotenv->load();
 
-    if (!isset($_SESSION['_id'])) {
+    $s3_bucket = $_ENV['S3_KEY'];]
+
+    if (!isset($_SESSION['id'])) {
         header("Location: login.php");
     }else{
-        $_id = $_SESSION['_id'];
-        $username = $_SESSION['username'];
+        $id = $_SESSION['id'];
         $email = $_SESSION['email'];
-        $phone = $_SESSION['phone'];
- 
-        echo $username; 
-
+        $firstname = $_SESSION['firstname'];
+        $phoneNumber = $_SESSION['phoneNumber'];
+        $token = $_SESSION['token'];
     }
                  
 ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <!-- <base href="https://myhomeulom/"> -->
+        <base href="<?= $base_url; ?>">
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
@@ -103,7 +105,7 @@
                             <li class="nav-item dropdown d-none d-lg-block">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="material-icons">notifications_none</i>
-                                    <span class="badge"><?php if ($messageNum) { echo $messageNum; } ?></span>
+                                    <span class="badge">1</span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right dd-notifications" aria-labelledby="navbarDropdown">
                                     <li class="notification-drop-title">Today</li>

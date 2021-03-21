@@ -12,6 +12,8 @@ Php 5.6.40 or latest version.
 Composer to autoload dependencies.
 AWS php sdk.
 Twilio for sms notification.
+MongoDb database
+vlucas library
 
 -AWS Services
 1. AWS Cognito for User authentication
@@ -20,7 +22,7 @@ Twilio for sms notification.
 
 -Installation
 Clone repository
+make api calls to a REST API endpoints. Example <Your-server>/api/user etc.
 Make sure to autoload dependencies with composer to get desired experience.
 
 Note: To pull or push AWS configurations to the cloud one will need an AWS user with appropriate permissions.
-
