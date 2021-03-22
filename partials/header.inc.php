@@ -1,7 +1,10 @@
 <?php session_start();
     // require_once 'functions.inc.php';
-    include_once'../vendor/autoload.php';
-    include_once'../config/core.php';
+    // require_once'../vendor/autoload.php';
+    // require_once'../config/core.php';
+    require_once(dirname(__FILE__) . "/../vendor/autoload.php");
+    require_once(dirname(__FILE__) . "/../config/core.php");
+    // echo $g;
     // $config = require_once(__DIR__ .'/../config/core.php');
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/..');
     $dotenv->load();
