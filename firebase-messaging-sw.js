@@ -1,3 +1,18 @@
+require('dotenv').config()
+
+const FIREBASE_API_KEY = process.env.FIREBASE_API_KEY;
+const FIREBASE_AUTH_DOMAIN = process.env.FIREBASE_AUTH_DOMAIN;
+const FIREBASE_DATABASE_URL = process.env.FIREBASE_DATABASE_URL;
+const FIREBASE_PROJECT_ID = process.env.FIREBASE_PROJECT_ID;
+const FIREBASE_STORAGE_BUCKET = process.env.FIREBASE_STORAGE_BUCKET;
+const FIREBASE_MESSAGING_SENDER_ID = process.env.FIREBASE_MESSAGING_SENDER_ID;
+const FIREBASE_APP_ID = process.env.FIREBASE_APP_ID;
+const FIREBASE_MEASUREMENT_ID = process.env.FIREBASE_MEASUREMENT_ID;
+
+console.log(FIREBASE_API_KEY);
+console.log(FIREBASE_AUTH_DOMAIN);
+console.log(FIREBASE_DATABASE_URL);
+
 if ('serviceWorker' in navigator) {
 navigator.serviceWorker.register('../firebase-messaging-sw.js')
   .then(function(registration) {
@@ -22,14 +37,13 @@ navigator.serviceWorker.register('../firebase-messaging-sw.js')
  // https://firebase.google.com/docs/web/setup#config-object
  
  firebase.initializeApp({
-    apiKey: "AIzaSyB3YnQ2WaEQWGspxexCKSBc-1dF4kX7lQE",
-    authDomain: "smart-surveillance-1eaf6.firebaseapp.com",
-    databaseURL: "https://smart-surveillance-1eaf6.firebaseio.com",
-    projectId: "smart-surveillance-1eaf6",
-    storageBucket: "smart-surveillance-1eaf6.appspot.com",
-    messagingSenderId: "301561777685",
-    appId: "1:301561777685:web:ea02d8076f1a6a5de7081c",
-    measurementId: "G-47LRFVSMHN",
+    apiKey: FIREBASE_API_KEY,
+    authDomain: FIREBASE_AUTH_DOMAIN,
+    databaseURL: FIREBASE_DATABASE_URL,
+    projectId: FIREBASE_PROJECT_ID,
+    messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
+    appId: FIREBASE_APP_ID,
+    measurementId: FIREBASE_MEASUREMENT_ID,
  });
 
  // Retrieve an instance of Firebase Messaging so that it can handle background
