@@ -1,7 +1,7 @@
 <?php session_start();
     // require_once 'functions.inc.php';
-    require $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
-    // require $_SERVER['DOCUMENT_ROOT'].'/config/core.php';
+    require_once'vendor/autoload.php';
+    require_once'config/core.php';
     // $config = require_once(__DIR__ .'/../config/core.php');
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/..');
     $dotenv->load();
