@@ -1,9 +1,9 @@
 <?php session_start();
     // require_once 'functions.inc.php';
-    require_once(__DIR__ ."../../vendor/autoload.php");
-    require_once(__DIR__ ."../../config/core.php");
-    // $config = require_once(__DIR__ ."/../config/core.php");
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__."/..");
+    include $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
+    include $_SERVER['DOCUMENT_ROOT'].'/config/core.php';
+    // $config = require_once(__DIR__ .'/../config/core.php');
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/..');
     $dotenv->load();
 
     $s3_bucket = $_ENV['S3_KEY'];
