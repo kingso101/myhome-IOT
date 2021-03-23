@@ -1,6 +1,6 @@
 <?php session_start();
     // require_once 'functions.inc.php';
-    require_once(__DIR__ .'/../autoloaders.php');
+    require_once(__DIR__ .'../autoloaders.php');
     // require_once(__DIR__ .'/../config/core.php');
     // require_once(dirname(__FILE__) . "/../vendor/autoload.php");
     // require_once(dirname(__FILE__) . "/../config/core.php");
