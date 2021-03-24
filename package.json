@@ -1,5 +1,5 @@
 {
-  "name": "awsMyHome",
+  "name": "awsmyhome",
   "version": "1.0.0",
   "description": "This project in collaboration with Facebook and Andela, is aimed at building a Face recognition security surveillance system with the nvidia edge device and AWS services.",
   "main": "firebase-messaging-sw.js",
@@ -19,5 +19,6 @@
   "homepage": "https://github.com/kingso101/myhome-IOT#readme",
   "dependencies": {
     "dotenv": "^8.2.0"
-  }
+  },
+  "devDependencies": {}
 }
