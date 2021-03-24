@@ -7,8 +7,8 @@
     // $dotenv->load();
 
     if (file_exists(__DIR__ .'/../.env')) {
-        print_r("Yesaaa");
-        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__."/..");
+        print_r("Yesaaa"."<br>");
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__."/../.");
         $dotenv->load();
        
     }
