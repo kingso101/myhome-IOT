@@ -3,19 +3,19 @@
     require_once(__DIR__ .'/../vendor/autoload.php');
     require_once(__DIR__ .'/../config/core.php');
     // $config = require_once(__DIR__ .'/../config/core.php');
-    // $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/..');
-    // $dotenv->load();
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/..');
+    $dotenv->load();
 
-    try {
-        (Dotenv\Dotenv::createImmutable(__DIR__.'/..'))->load();
-    } catch (Dotenv\Exception\InvalidPathException $e) {
-        echo $e;
-    }
+    // try {
+    //     (Dotenv\Dotenv::createImmutable(__DIR__.'/..'))->load();
+    // } catch (Dotenv\Exception\InvalidPathException $e) {
+    //     echo $e;
+    // }
 
     $s3_bucket = $_ENV['S3_KEY'];
 
     if (!isset($_SESSION['id'])) {
-        header("Location: login.php");
+        header("Location: ../auth/login.php");
     }else{
         $id = $_SESSION['id'];
         $email = $_SESSION['email'];
