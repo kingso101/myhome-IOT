@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('.env').config()
 
 const FIREBASE_API_KEY = process.env.FIREBASE_API_KEY;
 const FIREBASE_AUTH_DOMAIN = process.env.FIREBASE_AUTH_DOMAIN;
