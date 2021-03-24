@@ -1,4 +1,5 @@
-require('.env').config()
+// require('dotenv').config()
+require('dotenv').config({path: __dirname + '/.env'})
 
 const FIREBASE_API_KEY = process.env.FIREBASE_API_KEY;
 const FIREBASE_AUTH_DOMAIN = process.env.FIREBASE_AUTH_DOMAIN;
