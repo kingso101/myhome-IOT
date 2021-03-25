@@ -213,7 +213,7 @@
 
                         function deleteToken(currentToken) {
                             $.ajax({
-                                url: 'action.php',
+                                url: '../action.php',
                                 method: 'POST',
                                 data: 'token=' + currentToken + '&action=delete'
                             }).done(function(result){

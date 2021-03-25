@@ -80,7 +80,7 @@ if (isset($_POST['token']) && isset($_POST['action'])) {
             var_dump($response);
             curl_close($curl);
 
-        } catch (DynamoDbException $e) {
+        } catch (Exception $e) {
             // The PutItem operation failed.
             echo $e->getMessage();
         }
