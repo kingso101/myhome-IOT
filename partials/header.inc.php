@@ -171,11 +171,13 @@
 
                         function saveToken(currentToken) {
                             $.ajax({
-                                url: 'action.php',
+                                url: 'https://smart-ss-staging.herokuapp.com/api/v1/users/'+id+'/fcmtoken,'
                                 method: 'POST',
-                                data: 'token=' + currentToken + '&action=save'
+                                data: 'fcmToken=' + currentToken
                             }).done(function(result){
                                 console.log(result);
+                            }).error(function(error){
+                                console.log('This an error => '+error);
                             })
                             console.log("Token saved to database.");
                             $( "#permission" ).prop( "checked", true );
