@@ -171,10 +171,30 @@
                         }
 
                         function saveToken(currentToken) {
+                            // function to make form values to json format
+                            $.fn.serializeObject = function(){
+                                var o = {};
+                                var a = this.serializeArray();
+                                $.each(a, function() {
+                                    if (o[this.name] !== undefined) {
+                                        if (!o[this.name].push) {
+                                            o[this.name] = [o[this.name]];
+                                        }
+                                        o[this.name].push(this.value || '');
+                                    } else {
+                                        o[this.name] = this.value || '';
+                                    }
+                                });
+                                return o;
+                            };
+                            // get form data
+                            var data_var = 'fcmToken=' + currentToken;
+                            var form_data = JSON.stringify(data_var.serializeObject());
                             $.ajax({
                                 url: 'https://smart-ss-staging.herokuapp.com/api/v1/users/'+id+'/fcmtoken',
-                                method: 'POST',
-                                data: 'fcmToken=' + currentToken
+                                contentType : 'application/json',
+                                type: 'POST',
+                                data: form_data
                             }).done(function(result){
                                 console.log(result);
                             }).error(function(error){
