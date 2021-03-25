@@ -171,7 +171,7 @@
 
                         function saveToken(currentToken) {
                             $.ajax({
-                                url: 'https://smart-ss-staging.herokuapp.com/api/v1/users/'+id+'/fcmtoken,'
+                                url: 'https://smart-ss-staging.herokuapp.com/api/v1/users/'+id+'/fcmtoken',
                                 method: 'POST',
                                 data: 'fcmToken=' + currentToken
                             }).done(function(result){
