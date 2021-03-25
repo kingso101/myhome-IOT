@@ -91,6 +91,7 @@
             $(document).ready(function() {
                 // Your web app's Firebase configuration
                 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+                var id = "<?php echo $id ?>";
                 var API_KEY = "<?php echo $_ENV['FIREBASE_API_KEY'] ?>";
                 var AUTH_DOMAIN = "<?php echo $_ENV['FIREBASE_AUTH_DOMAIN'] ?>";
                 var DATABASE_URL = "<?php echo $_ENV['FIREBASE_DATABASE_URL'] ?>";
