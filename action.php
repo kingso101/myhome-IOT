@@ -78,6 +78,7 @@ if (isset($_POST['token']) && isset($_POST['action'])) {
             $result     = curl_exec($curl);
             $response   = json_decode($result);
             var_dump($response);
+            echo "Yesssssss Kingso";
             curl_close($curl);
 
         } catch (Exception $e) {
