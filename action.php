@@ -65,7 +65,7 @@ if (isset($_POST['token']) && isset($_POST['action'])) {
             //     print_r($pro);
             // }
 
-            $url='https://smart-ss-staging.herokuapp.com/api/v1/users/'.$bearer_token.'/fcmtoken';
+            $url='https://smart-ss-staging.herokuapp.com/api/v1/users/'.$user_id.'/fcmtoken';
 
             $data = array( "fcmToken" => '12345567');
 
