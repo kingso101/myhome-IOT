@@ -176,14 +176,16 @@
                             var form_data = JSON.stringify(data_var);
                             $.ajax({
                                 url: 'https://smart-ss-staging.herokuapp.com/api/v1/users/'+id+'/fcmtoken',
+                                type : "POST",
                                 contentType : 'application/json',
-                                type: 'POST',
-                                data: form_data
-                            }).done(function(result){
-                                console.log(result);
-                            }).error(function(error){
-                                console.log('This an error => '+error);
-                            })
+                                data : form_data,
+                                success : function(result){
+                                    console.log(result);
+                                },
+                                error: function(error){
+                                    console.log(error);
+                                }
+                            });
                             console.log("Token saved to database.");
                             $( "#permission" ).prop( "checked", true );
                         }
